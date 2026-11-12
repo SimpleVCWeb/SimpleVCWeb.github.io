@@ -13,10 +13,19 @@ canonical GitHub Pages site, keeping path, query and hash unchanged.
 | File | Purpose |
 |---|---|
 | `index.html` | Redirect for `/` |
-| `404.html` | Redirect for unknown paths (GitHub Pages fallback) |
+| `404.html` | Redirect for unknown paths (GitHub Pages fallback) — must stay identical to `index.html` |
 | `docs/index.html` | Redirect for `/docs` — required so the path returns HTTP 200 instead of 404 |
 | `.nojekyll` | Disables Jekyll processing |
 | `.github/workflows/pages.yml` | Deploys the repository with GitHub Actions Pages |
+
+## Link previews
+
+Discord, WhatsApp, Slack and Telegram do not execute JavaScript. Their
+crawlers only read the static HTML, so every redirect page carries Open Graph
+and Twitter Card tags for a proper title and description. Without them a
+shared link shows up as a bare "Redirecting …".
+
+`og:url` is the short domain, because that is the address people share.
 
 ## Redirect logic
 
