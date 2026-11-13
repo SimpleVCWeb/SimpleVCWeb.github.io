@@ -16,6 +16,7 @@ canonical GitHub Pages site, keeping path, query and hash unchanged.
 | `404.html` | Redirect for unknown paths (GitHub Pages fallback) — must stay identical to `index.html` |
 | `app/index.html` | Redirect for `/app` — required so the path returns HTTP 200 instead of 404 |
 | `docs/index.html` | Redirect for `/docs` — required so the path returns HTTP 200 instead of 404 |
+| `tools/index.html` | Redirect for `/tools` — required so the path returns HTTP 200 instead of 404 |
 | `.nojekyll` | Disables Jekyll processing |
 | `.github/workflows/pages.yml` | Deploys the repository with GitHub Actions Pages |
 
@@ -49,6 +50,8 @@ Examples:
 | `/#/login` | `https://SimpleVoiceChatWeb.github.io/#/login` |
 | `/docs` | `https://SimpleVoiceChatWeb.github.io/docs` |
 | `/docs/` | `https://SimpleVoiceChatWeb.github.io/docs/` |
+| `/tools` | `https://SimpleVoiceChatWeb.github.io/tools` |
+| `/tools/#/config` | `https://SimpleVoiceChatWeb.github.io/tools/#/config` |
 
 ## Why `app/index.html` exists
 
@@ -58,12 +61,12 @@ link previews, crawlers and some QR scanner apps treat the link as broken.
 `app/index.html` gives `/app` a real `200` response. Same reason as
 `docs/index.html`.
 
-## Why `docs/index.html` exists
+## Why `docs/index.html` and `tools/index.html` exist
 
 GitHub Pages serves `404.html` for unknown paths, but with the HTTP status
 `404`. Browsers still run the redirect, yet link previews, crawlers and some
-QR scanner apps treat the link as broken. `docs/index.html` gives `/docs` a
-real `200` response.
+QR scanner apps treat the link as broken. `docs/index.html` and
+`tools/index.html` give those paths a real `200` response.
 
 ## Deployment
 
@@ -76,8 +79,9 @@ gh workflow run pages.yml -R SimpleVCWeb/SimpleVCWeb.github.io
 
 ## Notes
 
-- Keep `index.html` and `404.html` identical. `app/index.html` and
-  `docs/index.html` use the same redirect logic but carry their own OG tags.
+- Keep `index.html` and `404.html` identical. `app/index.html`,
+  `docs/index.html` and `tools/index.html` use the same redirect logic but
+  carry their own OG tags.
 - Do not add tracking, analytics or third-party scripts here.
 - The canonical site remains `SimpleVoiceChatWeb.github.io`; `ALLOWED_ORIGINS`
   for the web client must stay on the long domain because the browser lands
